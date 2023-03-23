@@ -1,22 +1,31 @@
+import { useState } from "react";
 import "./App.css";
 import { useFetch } from "./useFetch";
 
 function App() {
-  const { contacts } = useFetch({
-    url: "https://jsonplaceholder.typicode.com/users",
+  const [url, setUrl] = useState(null);
+  const { datas } = useFetch({
+    url,
   });
+  console.log(datas);
 
   return (
     <>
-      <div className="App">Hello</div>
-      {!contacts ? (
-        <p>LOADING...</p>
+      <div className="App">Data fetch and rendering with custom hook</div>
+      <button
+        onClick={() => setUrl("https://jsonplaceholder.typicode.com/posts")}
+      >
+        Show Posts
+      </button>
+      <button
+        onClick={() => setUrl("https://jsonplaceholder.typicode.com/comments")}
+      >
+        Show Comments
+      </button>
+      {!datas ? (
+        <p>Click the buttons to display datas</p>
       ) : (
-        <p>
-          {contacts.map((contact) => (
-            <li key={contact.id}>{contact.name}</li>
-          ))}
-        </p>
+        datas.map((data) => <p key={data.id}>{data.body}</p>)
       )}
     </>
   );
