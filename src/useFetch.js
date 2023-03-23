@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 
-export const useFetch = (options) => {
-  const [data, setData] = useState(null);
+export const useFetch = (datas) => {
+  const [contacts, setContacts] = useState(null);
+
+  console.log(datas);
 
   useEffect(() => {
-    fetch(options.url)
+    fetch(datas.url)
     .then((res) => res.json())
-    .then((json) => setData(json))
-  }, [options.url])
+    .then((json) => setContacts(json))
+  }, [datas.url])
+
+
   return {
-    data,
+    contacts,
   };
 };
