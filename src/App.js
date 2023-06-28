@@ -7,11 +7,11 @@ function App() {
   const { datas } = useFetch({
     url,
   });
-  console.log(datas);
+  console.log(url);
 
   return (
     <>
-      <div className="App">Data fetch and rendering with custom hook</div>
+      <div className="App">Data fecth and rendering with custom hook</div>
       <button
         onClick={() => setUrl("https://jsonplaceholder.typicode.com/posts")}
       >
